@@ -17,8 +17,8 @@ package frc.robot;
  */
 public final class Constants {
     public final static int SOLENOID_PORT_ONE = 0;
-    public final static int SOLENOID_PORT_TWO = 0;
-    public final static int JOYSTICK_PORT = 1;
+    public final static int SOLENOID_PORT_TWO = 1;
+    public final static int JOYSTICK_PORT = 2;
 
 
     public final static int JOYSTICK_BUTTON_SHOOT = 0;

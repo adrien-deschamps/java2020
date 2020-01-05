@@ -46,8 +46,6 @@ public class BaseTankPilotable extends SubsystemBase {
     leftMaster = new SpeedControllerGroup(left1, left2);
     rightMaster = new SpeedControllerGroup(right1, right2);
 
-    leftMaster.setInverted(true);
-
     drive = new DifferentialDrive(leftMaster, rightMaster);
 
     //gyro.calibrate();

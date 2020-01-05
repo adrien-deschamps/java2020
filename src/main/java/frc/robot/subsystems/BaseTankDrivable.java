@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class BaseTankPilotable extends SubsystemBase {
+public class BaseTankDrivable extends SubsystemBase {
   
   private double leftSpeed;
   private double rightSpeed;
@@ -23,7 +23,7 @@ public class BaseTankPilotable extends SubsystemBase {
 
   DifferentialDrive drive;
 
-  public BaseTankPilotable() {
+  public BaseTankDrivable() {
     initBase();
   }
 

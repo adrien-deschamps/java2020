@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 
-public class BaseMecanumPilotable extends SubsystemBase {
+public class BaseMecanumDrivable extends SubsystemBase {
 
   
   private double speedX;
@@ -38,7 +38,7 @@ public class BaseMecanumPilotable extends SubsystemBase {
 
   MecanumDrive drive;
 
-  public BaseMecanumPilotable() {
+  public BaseMecanumDrivable() {
     initBase();
   }
 
@@ -59,7 +59,7 @@ public class BaseMecanumPilotable extends SubsystemBase {
     drive = new MecanumDrive(leftFrontMotor, leftRearMotor, rightFrontMotor, rightRearMotor);
 
 
-    //gyro.calibrate();
+    gyro.calibrate();
 
   }
 // Updates the new speeds indicated by the joysticks

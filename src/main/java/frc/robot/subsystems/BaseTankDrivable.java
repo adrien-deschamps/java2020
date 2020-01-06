@@ -5,13 +5,17 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.SPI;
+//import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class BaseTankDrivable extends SubsystemBase {
   
   private double leftSpeed;
   private double rightSpeed;
-  //private Gyro gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
+  private Gyro gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
+
 
   private WPI_TalonSRX left1;
   private WPI_TalonSRX left2;
@@ -21,9 +25,12 @@ public class BaseTankDrivable extends SubsystemBase {
   private SpeedControllerGroup leftMaster;
   private SpeedControllerGroup rightMaster;
 
+  //private Solenoid solenoid ;
+
   DifferentialDrive drive;
 
   public BaseTankDrivable() {
+    //solenoid = new Solenoid(0);
     initBase();
   }
 
@@ -32,8 +39,8 @@ public class BaseTankDrivable extends SubsystemBase {
 
     // Initialize motor controllers and drive
     left1 = new WPI_TalonSRX(0);
-    left2 = new WPI_TalonSRX(1);
-    right1 = new WPI_TalonSRX(2);
+    left2 = new WPI_TalonSRX(2);
+    right1 = new WPI_TalonSRX(1);
     right2 = new WPI_TalonSRX(3);
 
     leftMaster = new SpeedControllerGroup(left1, left2);
@@ -41,7 +48,7 @@ public class BaseTankDrivable extends SubsystemBase {
 
     drive = new DifferentialDrive(leftMaster, rightMaster);
 
-    //gyro.calibrate();
+    gyro.calibrate();
 
   }
 
@@ -54,7 +61,7 @@ public class BaseTankDrivable extends SubsystemBase {
   @Override
   public void periodic() {
 
-    drive.tankDrive(leftSpeed, rightSpeed);
+      drive.tankDrive(leftSpeed, rightSpeed);
 
     }
 }

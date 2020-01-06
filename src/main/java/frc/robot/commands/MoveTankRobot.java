@@ -10,21 +10,21 @@ package frc.robot.commands;
 import frc.robot.subsystems.BaseTankDrivable;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+import edu.wpi.first.wpilibj.Joystick;
+
+
 public class MoveTankRobot extends CommandBase {
-    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private BaseTankDrivable m_base;
-    private double coordY1;
-    private double coordY2;
+    private Joystick m_stick;
   
     /**
      * Creates a new ExampleCommand.
      *
      * @param subsystem The subsystem used by this command.
      */
-    public void MoveRobotTank(BaseTankDrivable base, double coordY1, double coordY2) {
+    public MoveTankRobot(BaseTankDrivable base, Joystick stick) {
       m_base = base;
-      this.coordY1 = coordY1;
-      this.coordY2 = coordY2;
+      m_stick = stick;
       addRequirements(m_base);
     }
 
@@ -36,7 +36,7 @@ public class MoveTankRobot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      m_base.setSpeed(coordY1, coordY2);
+      m_base.setSpeed(m_stick.getY(), m_stick.getX());
   }
 
   // Called once the command ends or is interrupted.
@@ -47,6 +47,6 @@ public class MoveTankRobot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

@@ -36,7 +36,7 @@ public class ShootPiston extends CommandBase {
   @Override
   public void execute() {
     if (timer.get() < 1)  
-    piston.forawrd();
+    piston.forward();
     else
     piston.reverse();
   }

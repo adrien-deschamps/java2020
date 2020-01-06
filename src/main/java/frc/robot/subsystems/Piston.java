@@ -29,7 +29,7 @@ public class Piston extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void forawrd() {
+  public void forward() {
     solenoid.set(DoubleSolenoid.Value.kForward);
   }
   

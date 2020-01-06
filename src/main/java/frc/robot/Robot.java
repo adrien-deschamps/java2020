@@ -15,6 +15,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
+import edu.wpi.cscore.VideoMode;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
@@ -43,7 +44,10 @@ public class Robot extends TimedRobot {
     // LE CODE POUR TRAITER L'IMAGE
     new Thread(() -> {
       UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-      camera.setResolution(640, 480);
+      camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 320, 240, 20);
+      camera.setExposureManual(0);
+      camera.setWhiteBalanceManual(0);
+      camera.setFPS(30);
 
       CvSink cvSink = CameraServer.getInstance().getVideo();
       CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);

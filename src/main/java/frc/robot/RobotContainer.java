@@ -50,7 +50,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_joystick, Constants.JOYSTICK_BUTTON_SHOOT).whenHeld(m_shootPison);
+    new JoystickButton(m_joystick, Constants.JOYSTICK_BUTTON_SHOOT).whenPressed(m_shootPison);
   }
 
 

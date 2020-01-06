@@ -22,6 +22,7 @@ public class ShootPiston extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     piston =_piston;
     addRequirements(piston);
+    timer = new Timer();
   }
 
   // Called when the command is initially scheduled.
@@ -34,7 +35,7 @@ public class ShootPiston extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (timer.get() < 1000)  
+    if (timer.get() < 1)  
     piston.forawrd();
     else
     piston.reverse();
@@ -49,7 +50,7 @@ public class ShootPiston extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (timer.get() > 2000) {
+    if (timer.get() > 2) {
       return true;
     } else {
       return false;

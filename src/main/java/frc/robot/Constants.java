@@ -22,4 +22,5 @@ public final class Constants {
 
 
     public final static int JOYSTICK_BUTTON_SHOOT = 1;
+    public final static int PORT_TRENCH = 1;
 }

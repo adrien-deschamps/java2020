@@ -12,6 +12,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.MoveTankRobot;
 import frc.robot.subsystems.BaseTankDrivable;
+import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.ShootPiston;
+import frc.robot.subsystems.Piston;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -21,6 +25,11 @@ import frc.robot.subsystems.BaseTankDrivable;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  
+  private final Piston m_piston = new Piston();
+  private final Joystick m_joystick = new Joystick(Constants.JOYSTICK_PORT);
+  private final ShootPiston m_shootPison = new ShootPiston(m_piston);
+
 
   private Joystick joystick;
   private BaseTankDrivable bTankDrivable;
@@ -45,6 +54,7 @@ public class RobotContainer {
     bTankDrivable = new BaseTankDrivable();
     joystick = new Joystick(0);
     mTankRobot = new MoveTankRobot(bTankDrivable, joystick);
+    new JoystickButton(m_joystick, Constants.JOYSTICK_BUTTON_SHOOT).whenPressed(m_shootPison);
   }
 
 

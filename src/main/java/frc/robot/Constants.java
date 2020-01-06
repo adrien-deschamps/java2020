@@ -23,7 +23,7 @@ public final class Constants {
 
     public final static int JOYSTICK_BUTTON_SHOOT = 1;
 
-    public final static int TRENCH_PORT = 1;
+    public final static int JOYSTICK_BUTTON_ROTATE = 2;
 
     public final static double INITIAZE_SPEED = 0.0;
     public final static double ROTATION_SPEED = 0.75;

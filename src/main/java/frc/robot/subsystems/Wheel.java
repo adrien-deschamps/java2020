@@ -1,12 +1,14 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Spark;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Constants;
 
-public class SpeedControllers {
-    private Spark m_spark = new Spark(Constants.TRENCH_PORT);
+public class Wheel {
+    private WPI_TalonSRX trenchWheel;
 
-    public void controllers() {
+
+    public void initWheel() {
+        trenchWheel = new WPI_TalonSRX(0);
         m_spark.set(Constants.INITIAZE_SPEED);
     }
 

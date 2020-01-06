@@ -16,13 +16,17 @@ import frc.robot.subsystems.Wheel;
 
 public class RotateWheel extends CommandBase {
   /**
-   * Creates a new TirerPiston.
+   * Creates a new wheel for trench.
    */
   private Wheel wheel;
+  private int lastColor; // temporary variable type for color... to be changed
+  private int currentColor;
+  private int counter;
 
   public RotateWheel(Wheel _wheel) {
     // Use addRequirements() here to declare subsystem dependencies.
     wheel =_wheel;
+    counter = 0;
   }
 
   // Called when the command is initially scheduled.
@@ -34,10 +38,10 @@ public class RotateWheel extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if ( == Constants.JOYSTICK_BUTTON_ROTATE)  
+    // get color from sensor; currentColor = sensor.color;
     wheel.rotate(Constants.ROTATION_SPEED);
-    else
-    wheel.rotate(Constants.INITIAZE_SPEED);
+    if (lastColor != currentColor)
+      counter++;
   }
 
   // Called once the command ends or is interrupted.
@@ -49,10 +53,11 @@ public class RotateWheel extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (timer.get() > 2) {
+    if (counter > Constants.NB_OF_WHEEL_SLICES) {
+      counter = 0;
       return true;
     } else {
       return false;
-      }
+    }
   }
 }

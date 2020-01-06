@@ -27,4 +27,6 @@ public final class Constants {
 
     public final static double INITIAZE_SPEED = 0.0;
     public final static double ROTATION_SPEED = 0.75;
+
+    public final static int NB_OF_WHEEL_SLICES = 18; // 3 turns times 6 colors per colorWheel
 }

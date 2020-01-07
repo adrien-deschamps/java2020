@@ -16,10 +16,13 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    //PWM
+    public final static int VICTOR_FEEDER_PORT = 0;
+    //Joystick
+    public final static int JOYSTICK_PORT = 0;
+    //Solenoid
     public final static int SOLENOID_PORT_ONE = 6;
     public final static int SOLENOID_PORT_TWO = 7;
-    public final static int JOYSTICK_PORT = 0;
-
-
+    //Joystick button
     public final static int JOYSTICK_BUTTON_SHOOT = 1;
 }

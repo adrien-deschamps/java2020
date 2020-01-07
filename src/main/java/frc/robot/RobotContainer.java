@@ -10,12 +10,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.FeederCommand;
 import frc.robot.commands.MoveTankRobot;
 import frc.robot.subsystems.BaseTankDrivable;
+import frc.robot.subsystems.Feeder;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ShootPiston;
-import frc.robot.subsystems.Piston;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+//import frc.robot.commands.ShootPiston;
+//import frc.robot.subsystems.Piston;
+//import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -26,14 +29,16 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   
-  private final Piston m_piston = new Piston();
-  private final Joystick m_joystick = new Joystick(Constants.JOYSTICK_PORT);
-  private final ShootPiston m_shootPison = new ShootPiston(m_piston);
+  //private final Piston m_piston = new Piston();
+  //private final Joystick m_joystick = new Joystick(Constants.JOYSTICK_PORT);
+  //private final ShootPiston m_shootPison = new ShootPiston(m_piston);
 
 
   private Joystick joystick;
   private BaseTankDrivable bTankDrivable;
   private MoveTankRobot mTankRobot;
+  private FeederCommand mFeederCommand;
+  private Feeder feeder;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -53,8 +58,11 @@ public class RobotContainer {
   private void configureButtonBindings() {
     bTankDrivable = new BaseTankDrivable();
     joystick = new Joystick(0);
+    feeder = new Feeder();
+    mFeederCommand = new FeederCommand(feeder);
     mTankRobot = new MoveTankRobot(bTankDrivable, joystick);
-    new JoystickButton(m_joystick, Constants.JOYSTICK_BUTTON_SHOOT).whenPressed(m_shootPison);
+    new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_SHOOT).whenHeld(mFeederCommand);
+    //new JoystickButton(m_joystick, Constants.JOYSTICK_BUTTON_SHOOT).whenPressed(m_shootPison);
   }
 
 

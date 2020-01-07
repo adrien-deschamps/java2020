@@ -11,9 +11,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.ConveyorCommand;
 import frc.robot.commands.FeederCommand;
 import frc.robot.commands.MoveTankRobot;
 import frc.robot.subsystems.BaseTankDrivable;
+import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Feeder;
 import edu.wpi.first.wpilibj.XboxController;
 //import frc.robot.commands.ShootPiston;
@@ -39,6 +41,8 @@ public class RobotContainer {
   private MoveTankRobot mTankRobot;
   private FeederCommand mFeederCommand;
   private Feeder feeder;
+  private Conveyor mConveyor;
+  private ConveyorCommand mConveyorCommand;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -59,9 +63,12 @@ public class RobotContainer {
     bTankDrivable = new BaseTankDrivable();
     joystick = new Joystick(0);
     feeder = new Feeder();
+    mConveyor = new Conveyor();
+    mConveyorCommand = new ConveyorCommand(mConveyor);
     mFeederCommand = new FeederCommand(feeder);
     mTankRobot = new MoveTankRobot(bTankDrivable, joystick);
     new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_SHOOT).whenHeld(mFeederCommand);
+    new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_CONVEYOR).whenHeld(mConveyorCommand);
     //new JoystickButton(m_joystick, Constants.JOYSTICK_BUTTON_SHOOT).whenPressed(m_shootPison);
   }
 

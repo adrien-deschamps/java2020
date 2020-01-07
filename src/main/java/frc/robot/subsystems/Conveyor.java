@@ -11,22 +11,26 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Feeder extends SubsystemBase {
-
-  private Talon victor;
+public class Conveyor extends SubsystemBase {
   /**
-   * Creates a new Feeder.
+   * Creates a new Conveyor.
    */
-  public Feeder() {
-    initMotor();
+  private Talon talonSR;
+  
+  public Conveyor() {
+   initMotor(); 
   }
 
-  public void initMotor(){
-    victor = new Talon(Constants.VICTOR_FEEDER_PORT);
+  public void initMotor() {
+    talonSR = new Talon(Constants.TALONSR_CONVEYOR_PORT);
   }
 
-  public void setSpeed(double speed) {
-     victor.set(speed);
+  public void setSpeed (double speed) {
+    talonSR.setSpeed(speed);
   }
 
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+  }
 }

@@ -18,6 +18,10 @@ package frc.robot;
 public final class Constants {
     //PWM
     public final static int VICTOR_FEEDER_PORT = 0;
+    public final static int TALONSR_CONVEYOR_PORT = 1;
+    //CAN
+    public final static int TALONSRX_TANK_LEFT_PORT = 2;
+    public final static int TALONSRX_TANK_RIGHT_PORT = 1;
     //Joystick
     public final static int JOYSTICK_PORT = 0;
     //Solenoid
@@ -25,4 +29,5 @@ public final class Constants {
     public final static int SOLENOID_PORT_TWO = 7;
     //Joystick button
     public final static int JOYSTICK_BUTTON_SHOOT = 1;
+    public final static int JOYSTICK_BUTTON_CONVEYOR = 2;
 }

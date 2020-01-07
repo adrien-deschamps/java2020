@@ -7,26 +7,32 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 
-public class Feeder extends SubsystemBase {
-
-  private Talon victor;
+public class Hook extends SubsystemBase {
   /**
-   * Creates a new Feeder.
+   * Creates a new hook.
    */
-  public Feeder() {
+
+  private Talon talon;
+
+  public Hook() {
     initMotor();
   }
 
-  public void initMotor(){
-    victor = new Talon(Constants.VICTOR_FEEDER_PORT);
+  private void initMotor() {
+    talon = new Talon(6);
   }
-
+  
   public void setSpeed(double speed) {
-     victor.set(speed);
+    talon.setSpeed(speed);
   }
 
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+  }
 }

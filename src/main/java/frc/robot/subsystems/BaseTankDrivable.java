@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -9,6 +8,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.SPI;
 //import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class BaseTankDrivable extends SubsystemBase {
   
@@ -17,10 +17,8 @@ public class BaseTankDrivable extends SubsystemBase {
   private Gyro gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
 
 
-  private WPI_TalonSRX left1;
-  private WPI_TalonSRX left2;
-  private WPI_TalonSRX right1;
-  private WPI_TalonSRX right2;
+  private WPI_TalonSRX left;
+  private WPI_TalonSRX right;
 
   private SpeedControllerGroup leftMaster;
   private SpeedControllerGroup rightMaster;
@@ -38,13 +36,11 @@ public class BaseTankDrivable extends SubsystemBase {
   private void initBase(){
 
     // Initialize motor controllers and drive
-    left1 = new WPI_TalonSRX(0);
-    left2 = new WPI_TalonSRX(2);
-    right1 = new WPI_TalonSRX(1);
-    right2 = new WPI_TalonSRX(3);
+    left = new WPI_TalonSRX(Constants.TALONSRX_TANK_LEFT_PORT);
+    right = new WPI_TalonSRX(Constants.TALONSRX_TANK_RIGHT_PORT);
 
-    leftMaster = new SpeedControllerGroup(left1, left2);
-    rightMaster = new SpeedControllerGroup(right1, right2);
+    leftMaster = new SpeedControllerGroup(left);
+    rightMaster = new SpeedControllerGroup(right);
 
     drive = new DifferentialDrive(leftMaster, rightMaster);
 

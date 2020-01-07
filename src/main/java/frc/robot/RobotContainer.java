@@ -13,10 +13,16 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ConveyorCommand;
 import frc.robot.commands.FeederCommand;
+import frc.robot.commands.HookCommand;
 import frc.robot.commands.MoveTankRobot;
+import frc.robot.commands.RouletteCommand;
+import frc.robot.commands.ShootTheBall;
 import frc.robot.subsystems.BaseTankDrivable;
 import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Feeder;
+import frc.robot.subsystems.Hook;
+import frc.robot.subsystems.Launcher;
+import frc.robot.subsystems.Roulette;
 import edu.wpi.first.wpilibj.XboxController;
 //import frc.robot.commands.ShootPiston;
 //import frc.robot.subsystems.Piston;
@@ -35,14 +41,22 @@ public class RobotContainer {
   //private final Joystick m_joystick = new Joystick(Constants.JOYSTICK_PORT);
   //private final ShootPiston m_shootPison = new ShootPiston(m_piston);
 
+  private Joystick joystick1;
+  private Joystick joystick2;
 
-  private Joystick joystick;
   private BaseTankDrivable bTankDrivable;
-  private MoveTankRobot mTankRobot;
-  private FeederCommand mFeederCommand;
   private Feeder feeder;
   private Conveyor mConveyor;
+  private Hook mHook;
+  private Launcher mLauncher;
+  private Roulette mRoulette;
+
+  private RouletteCommand mRouletteCommand;
+  private ShootTheBall mShoot;
+  private HookCommand mHookCommand;
   private ConveyorCommand mConveyorCommand;
+  private FeederCommand mFeederCommand;
+  private MoveTankRobot mTankRobot;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -51,6 +65,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     bTankDrivable.setDefaultCommand(mTankRobot);
+    mLauncher.setDefaultCommand(mShoot);
   }
 
   /**
@@ -60,15 +75,29 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    mHook = new Hook();
+    mLauncher = new Launcher();
+    mRoulette = new Roulette();
     bTankDrivable = new BaseTankDrivable();
-    joystick = new Joystick(0);
+    joystick1 = new Joystick(0);
+    joystick2 = new Joystick(1);
     feeder = new Feeder();
     mConveyor = new Conveyor();
     mConveyorCommand = new ConveyorCommand(mConveyor);
     mFeederCommand = new FeederCommand(feeder);
-    mTankRobot = new MoveTankRobot(bTankDrivable, joystick);
-    new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_SHOOT).whenHeld(mFeederCommand);
-    new JoystickButton(joystick, Constants.JOYSTICK_BUTTON_CONVEYOR).whenHeld(mConveyorCommand);
+    mTankRobot = new MoveTankRobot(bTankDrivable, joystick1);
+    mRouletteCommand = new RouletteCommand(mRoulette);
+    mHookCommand = new HookCommand(mHook);
+    mShoot = new ShootTheBall(mLauncher, joystick2);
+
+
+
+    new JoystickButton(joystick1, Constants.JOYSTICK_BUTTON_SHOOT).whenHeld(mFeederCommand);
+    new JoystickButton(joystick2, 1).whenHeld(mConveyorCommand);
+    new JoystickButton(joystick1, Constants.JOYSTICK_BUTTON_ROULETTE).whenHeld(mRouletteCommand);
+
+
+
     //new JoystickButton(m_joystick, Constants.JOYSTICK_BUTTON_SHOOT).whenPressed(m_shootPison);
   }
 

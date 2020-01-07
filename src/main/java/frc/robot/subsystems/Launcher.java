@@ -7,26 +7,27 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Talon;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
-public class Hook extends SubsystemBase {
+public class Launcher extends SubsystemBase {
   /**
-   * Creates a new hook.
+   * Creates a new Launcher.
    */
+  private WPI_TalonSRX motor;
 
-  private Talon talon;
-
-  public Hook() {
+  public Launcher() {
     initMotor();
   }
 
   private void initMotor() {
-    talon = new Talon(6);
+    motor = new WPI_TalonSRX(Constants.TALONSRX_LAUNCHER_PORT);
   }
-  
+
   public void setSpeed(double speed) {
-    talon.setSpeed(speed);
+    motor.set(speed*-1);
   }
 
   @Override

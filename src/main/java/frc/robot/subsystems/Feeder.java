@@ -22,7 +22,7 @@ public class Feeder extends SubsystemBase {
   }
 
   public void initMotor(){
-    victor = new Talon(Constants.VICTOR_FEEDER_PORT);
+    victor = new Talon(Constants.TALONSR_FEEDER_PORT);
   }
 
   public void setSpeed(double speed) {

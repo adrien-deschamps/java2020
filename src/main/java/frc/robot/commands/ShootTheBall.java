@@ -18,9 +18,10 @@ public class ShootTheBall extends CommandBase {
   private Launcher mLauncher;
   private Joystick m_stick;
 
-  public ShootTheBall(Launcher launcher, Joystick m_stick) {
+  public ShootTheBall(Launcher launcher, Joystick stick) {
     // Use addRequirements() here to declare subsystem dependencies.
     mLauncher = launcher;
+    m_stick = stick;
     addRequirements(launcher);
   }
 

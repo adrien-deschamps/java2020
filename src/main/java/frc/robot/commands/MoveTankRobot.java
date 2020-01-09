@@ -37,8 +37,8 @@ public class MoveTankRobot extends CommandBase {
   @Override
   public void execute() {
       m_base.setSpeed(
-        m_stick.getRawAxis(5), 
-        m_stick.getRawAxis(1));
+        m_stick.getRawAxis(1)*-0.8, 
+        m_stick.getRawAxis(5)*-0.8);
   }
 
   // Called once the command ends or is interrupted.

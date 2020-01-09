@@ -3,9 +3,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.SPI;
 //import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -14,8 +11,6 @@ public class BaseTankDrivable extends SubsystemBase {
   
   private double leftSpeed;
   private double rightSpeed;
-  private Gyro gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
-
 
   private WPI_TalonSRX left;
   private WPI_TalonSRX right;
@@ -44,7 +39,6 @@ public class BaseTankDrivable extends SubsystemBase {
 
     drive = new DifferentialDrive(leftMaster, rightMaster);
 
-    gyro.calibrate();
 
   }
 
